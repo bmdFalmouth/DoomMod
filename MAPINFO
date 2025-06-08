@@ -1,3 +1,13 @@
 GameInfo{
   PlayerClasses = "MyPlayer"
 }
+
+map maps/map1 lookup "TEST_MAP"
+{
+   levelnum = 1
+   titlepatch = "WILV00"
+   next = "E1M2"
+   cluster = 1
+   par = 30
+   sucktime = 1
+}
