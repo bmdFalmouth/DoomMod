@@ -2,11 +2,17 @@ GameInfo{
   PlayerClasses = "MyPlayer"
 }
 
-map maps/map1 lookup "TEST_MAP"
+clearepisodes
+episode e1m1
+{
+	picname = "M_EPI1"
+	name = "Knee-Deep in the Dead"
+	key = "k"
+}
+
+map e1m1 lookup "TEST_MAP"
 {
    levelnum = 1
-   titlepatch = "WILV00"
-   next = "E1M2"
    cluster = 1
    par = 30
    sucktime = 1
