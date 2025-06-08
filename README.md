@@ -9,3 +9,4 @@ https://www.doomworld.com/forum/topic/74073-vanilla-level-editing-lesson-1-preli
 Scripting
 =========
 https://github.com/jekyllgrim/ZScript_Basics
+Replacing player - https://www.youtube.com/watch?v=RelCoIzOd0g 
