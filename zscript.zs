@@ -1,3 +1,4 @@
 version "4.11"
 
-#include "player.zs"
+#include "scripts/player.zs"
+#include "scripts/weapons/hug.zs"
