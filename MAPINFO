@@ -17,3 +17,8 @@ map e1m1 lookup "TEST_MAP"
    par = 30
    sucktime = 1
 }
+
+DoomEdNums
+{
+  10246 = "Kid"
+}
