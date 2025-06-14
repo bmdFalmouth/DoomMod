@@ -2,6 +2,9 @@ class Cat : Actor
 {
 	Default
 	{
+		//$Title "Cat"
+        //$Category "Monsters"
+		//$Sprite "TBIDA0"
 		Health 20;
 		Radius 20;
 		Height 56;
