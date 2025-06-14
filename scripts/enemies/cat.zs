@@ -14,6 +14,8 @@ class Cat : Actor
 		+FLOORCLIP
 		Tag "$CAT";
 		Scale 0.2;
+
+
 	}
 	States
 	{
@@ -23,20 +25,5 @@ class Cat : Actor
 	See:
 		TBID ABBCCDD 4 A_Chase;
 		Loop;
-	Missile:
-		TBID A 0 A_FaceTarget;
-		TBID A 0;
-		Goto See;
-	Pain:
-		TBID A 0;
-		TBID A 0 A_Pain;
-		Goto See;
-	Death:
-		POSS H 5;
-		POSS I 5 A_Scream;
-		POSS J 5 A_NoBlocking;
-		POSS K 5;
-		POSS L -1;
-		Stop;
     }
 }
