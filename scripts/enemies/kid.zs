@@ -10,22 +10,23 @@ class Kid : Actor
 		Monster;
 		+FLOORCLIP
 		Tag "$FN_CHILD";
+		Scale 0.2;
 	}
 	States
 	{
 	Spawn:
-		POSS AB 10 A_Look;
+		TBID A -1 A_Look;
 		Loop;
 	See:
-		POSS AABBCCDD 4 A_Chase;
+		TBID ABBCCDD 4 A_Chase;
 		Loop;
 	Missile:
-		POSS E 10 A_FaceTarget;
-		POSS E 8;
+		TBID A 0 A_FaceTarget;
+		TBID A 0;
 		Goto See;
 	Pain:
-		POSS G 3;
-		POSS G 3 A_Pain;
+		TBID A 0;
+		TBID A 0 A_Pain;
 		Goto See;
 	Death:
 		POSS H 5;

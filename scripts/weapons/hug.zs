@@ -9,7 +9,7 @@ class Hug : Weapon
 	States
 	{
 	Ready:
-		HUGI A -1 A_WeaponReady;
+		PUNG A -1 A_WeaponReady;
         loop;
 	Deselect:
 		PUNG A 1 A_Lower;
