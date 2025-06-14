@@ -1,4 +1,4 @@
-class Kid : Actor
+class Cat : Actor
 {
 	Default
 	{
@@ -9,7 +9,7 @@ class Kid : Actor
 		PainChance 200;
 		Monster;
 		+FLOORCLIP
-		Tag "$FN_CHILD";
+		Tag "$CAT";
 		Scale 0.2;
 	}
 	States
