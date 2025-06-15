@@ -17,17 +17,20 @@ class Cat : Actor
 		
 	}
 
+	int purrs;
+
 	States
 	{
 	Spawn:
 		TBID A -1 
 		{
+			purrs=0;
 			console.printf("Cat spawned");
 			A_Look();
 		}
 		Loop;
 	See:
-		TBID ABBCCDD 4 
+		TBID A 1 
 		{
 			console.printf("Cat sees player");
 			A_Chase();
@@ -36,30 +39,44 @@ class Cat : Actor
 
 	Melee:
 	Missile:
-		TBID ABBCCDD 8 
+		TBID A 1 
 		{
 			console.printf("Cat fires missile");
 			A_FaceTarget();
 		}
 		Goto See;
 	Pain:
-		TBID A 2;
-		TBID A 2
+		TBID A 1;
+		TBID A 1
 		{
 			console.printf("Cat in pain");
 			A_Pain();
 		}
 		Goto See;
 	Death:
-		TBID A 8
+		TBID A 1
 		{
 			console.printf("Cat is dead");
 		}
-		TBID A 8 A_Scream;
-		TBID A 6;
-		TBID A 6 A_NoBlocking;
+		TBID A 1 A_Scream;
+		TBID A 1;
+		TBID A 1 A_NoBlocking;
 		TBID A -1;
 		Stop;
 		
     }
+
+	void TakeHugs()
+	{
+		purrs++;
+		if (purrs >= 5)
+		{
+			console.printf("Cat is purring happily!");
+			purrs = 0; // Reset purr count after reaching threshold
+		}
+		else
+		{
+			console.printf("Cat received a hug, total purrs: %d", purrs);
+		}
+	}
 }
