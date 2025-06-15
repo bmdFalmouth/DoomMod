@@ -14,16 +14,26 @@ class Cat : Actor
 		+FLOORCLIP
 		Tag "$CAT";
 		Scale 0.2;
-
-
+		
 	}
+
+	String currentStateLabel;
+
 	States
 	{
 	Spawn:
-		TBID A -1 A_Look;
-		Loop;
+		TBID A -1 
+		{
+			currentStateLabel="Spawn";
+			A_Look();
+		}
+		goto See;
 	See:
-		TBID ABBCCDD 4 A_Chase;
+		TBID ABBCCDD 4 
+		{
+			currentStateLabel="See";
+			//A_Chase();
+		}
 		Loop;
     }
 }
