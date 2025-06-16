@@ -73,6 +73,7 @@ class Cat : Actor
 		{
 			console.printf("Cat is purring happily!");
 			purrs = 0; // Reset purr count after reaching threshold
+			SetState(FindState("Death"));
 		}
 		else
 		{
