@@ -59,7 +59,7 @@ class Cat : Actor
 	Death:
 		TBID A 1
 		{
-			console.printf("Cat is dead");
+			console.printf("Cat is sleeping");
 		}
 		TBID A 1 A_Scream;
 		TBID A 1;
@@ -79,6 +79,7 @@ class Cat : Actor
 		{
 			console.printf("Cat is purring happily!");
 			purrs = 0; // Reset purr count after reaching threshold
+			//A_StopSound(CHAN_VOICE);
 			SetState(FindState("Death"));
 		}
 		else
@@ -99,7 +100,7 @@ class Cat : Actor
 			{
 				sleepSeconds++;
 			}
-			if (sleepSeconds>10)
+			if (sleepSeconds>5)
 			{
 				sleepCounter=0;
 				sleepSeconds=0;

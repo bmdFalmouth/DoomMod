@@ -1,3 +1,4 @@
+//https://github.com/ZDoom/gzdoom/blob/master/wadsrc/static/zscript/actors/doom/weaponfist.zs
 class Hug : Weapon 
 {
 	Default
