@@ -13,11 +13,12 @@ class Cat : Actor
 		Monster;
 		+FLOORCLIP
 		Tag "$CAT";
-		Scale 0.2;
-		
+		Scale 0.2;		
 	}
 
 	int purrs;
+	int sleepCounter;
+	int sleepSeconds;
 
 	States
 	{
@@ -25,6 +26,8 @@ class Cat : Actor
 		TBID A -1 
 		{
 			purrs=0;
+			sleepCounter=0;
+			sleepSeconds=0;
 			console.printf("Cat spawned");
 			A_Look();
 		}
@@ -41,7 +44,7 @@ class Cat : Actor
 	Missile:
 		TBID A 1 
 		{
-			console.printf("Cat fires missile");
+			console.printf("Cat facing missile");
 			A_FaceTarget();
 		}
 		Goto See;
@@ -63,7 +66,10 @@ class Cat : Actor
 		TBID A 1 A_NoBlocking;
 		TBSL A -1;
 		Stop;
-		
+	Raise:
+		TBSL A 1;
+		TBID A 1;
+		Goto See;
     }
 
 	void TakeHugs()
@@ -78,6 +84,27 @@ class Cat : Actor
 		else
 		{
 			console.printf("Cat received a hug, total purrs: %d", purrs);
+			A_StartSound("enemies/cat/purr1");
+		}
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if (InStateSequence(FindState("Death"),ResolveState("Death")))
+		{
+			sleepCounter++;
+			if ((sleepCounter%35)==0)
+			{
+				sleepSeconds++;
+			}
+			if (sleepSeconds>10)
+			{
+				sleepCounter=0;
+				sleepSeconds=0;
+				SetState(FindState("Raise"));
+			}
 		}
 	}
 }
