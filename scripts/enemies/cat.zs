@@ -61,7 +61,7 @@ class Cat : Actor
 		TBID A 1 A_Scream;
 		TBID A 1;
 		TBID A 1 A_NoBlocking;
-		TBID A -1;
+		TBSL A -1;
 		Stop;
 		
     }
