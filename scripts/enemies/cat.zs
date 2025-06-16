@@ -8,7 +8,7 @@ class Cat : Actor
 		Health 20;
 		Radius 20;
 		Height 56;
-		Speed 8;
+		Speed 2;
 		PainChance 200;
 		Monster;
 		+FLOORCLIP
