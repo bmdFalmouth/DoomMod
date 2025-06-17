@@ -10,20 +10,22 @@ class Pet : Weapon
 	States
 	{
 	Ready:
-		PUNG A -1 A_WeaponReady;
+		ARMI A 1 A_WeaponReady;
         loop;
 	Deselect:
-		PUNG A 1 A_Lower;
+		ARMI A 1 A_Lower;
 		Loop;
 	Select:
-		PUNG A 1 A_Raise;
+		ARMI A 1 A_Raise;
 		Loop;
 	Fire:
-		PUNG B 4;
-		PUNG C 4 A_Pet;
-		PUNG D 5;
-		PUNG C 4;
-		PUNG B 5 A_ReFire;
+		ARMI A 5;
+		ARMI B 5;
+		ARMI C 5;
+		ARMP D 5 A_Pet;
+		ARMI C 5;
+		ARMI B 5 A_ReFire;
+		ARMI A 5;
 		Goto Ready;
 	}
 
