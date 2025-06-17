@@ -19,6 +19,9 @@ class Cat : Actor
 	int purrs;
 	int sleepCounter;
 	int sleepSeconds;
+	int hunger;
+	int hungerCounter;
+	int hungerSeconds;
 
 	States
 	{
@@ -28,6 +31,9 @@ class Cat : Actor
 			purrs=0;
 			sleepCounter=0;
 			sleepSeconds=0;
+			hunger=100;
+			hungerCounter=0;
+			hungerSeconds=0;
 			console.printf("Cat spawned");
 			A_Look();
 		}
@@ -92,7 +98,7 @@ class Cat : Actor
 	override void Tick()
 	{
 		Super.Tick();
-		
+	
 		if (InStateSequence(FindState("Death"),ResolveState("Death")))
 		{
 			sleepCounter++;
@@ -105,6 +111,20 @@ class Cat : Actor
 				sleepCounter=0;
 				sleepSeconds=0;
 				SetState(FindState("Raise"));
+			}
+		}
+		else
+		{
+			hungerCounter++;
+			if ((hungerCounter%35)==0)
+			{
+				hungerSeconds++;
+				if ((hungerSeconds%10)==0)
+				{
+					hunger--;
+					//if hunger is <50 and food bowl is <50
+					//enter hug state!
+				}
 			}
 		}
 	}
