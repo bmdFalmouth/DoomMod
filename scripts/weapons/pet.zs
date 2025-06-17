@@ -19,13 +19,13 @@ class Pet : Weapon
 		ARMI A 1 A_Raise;
 		Loop;
 	Fire:
-		ARMI A 5;
-		ARMI B 5;
-		ARMI C 5;
+		ARMP A 3;
+		ARMP B 4;
+		ARMP C 3;
 		ARMP D 5 A_Pet;
-		ARMI C 5;
-		ARMI B 5 A_ReFire;
-		ARMI A 5;
+		ARMP C 2;
+		ARMP D 5 A_ReFire;
+		ARMP CBA 2;
 		Goto Ready;
 	}
 
