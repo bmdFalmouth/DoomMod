@@ -2,7 +2,7 @@ class MyPlayer : DoomPlayer
 {
     default{
         speed 3;
-        Player.StartItem "Hug";
+        Player.StartItem "Pet";
     }
 
     override void Tick()

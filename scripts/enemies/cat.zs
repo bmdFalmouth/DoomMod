@@ -72,7 +72,7 @@ class Cat : Actor
 		Goto See;
     }
 
-	void TakeHugs()
+	void TakePet()
 	{
 		purrs++;
 		if (purrs >= 5)

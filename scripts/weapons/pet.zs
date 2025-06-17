@@ -1,5 +1,5 @@
 //https://github.com/ZDoom/gzdoom/blob/master/wadsrc/static/zscript/actors/doom/weaponfist.zs
-class Hug : Weapon 
+class Pet : Weapon 
 {
 	Default
 	{
@@ -20,14 +20,14 @@ class Hug : Weapon
 		Loop;
 	Fire:
 		PUNG B 4;
-		PUNG C 4 A_Hug;
+		PUNG C 4 A_Pet;
 		PUNG D 5;
 		PUNG C 4;
 		PUNG B 5 A_ReFire;
 		Goto Ready;
 	}
 
-	action void A_Hug()
+	action void A_Pet()
 	{
 		FLineTraceData t;
 
@@ -58,7 +58,7 @@ class Hug : Weapon
 		{
 			console.printf("Hug hit: %s", t.HitActor.GetClassName());
 			Cat cat = Cat(t.HitActor);
-			cat.TakeHugs();
+			cat.TakePet();
 		}
 	}
 }
