@@ -22,6 +22,7 @@ class Cat : Actor
 	int hunger;
 	int hungerCounter;
 	int hungerSeconds;
+	int catChannel;
 
 	States
 	{
@@ -34,6 +35,7 @@ class Cat : Actor
 			hunger=100;
 			hungerCounter=0;
 			hungerSeconds=0;
+			catChannel=10;
 			console.printf("Cat spawned");
 			A_Look();
 		}
@@ -41,6 +43,9 @@ class Cat : Actor
 	See:
 		TBID A 1 
 		{
+			if (!IsActorPlayingSound(catChannel,"enemies/cat/meow1")){
+				A_StartSound("enemies/cat/meow1",catChannel);
+			}
 			console.printf("Cat sees player");
 			A_Chase();
 		}
@@ -91,7 +96,7 @@ class Cat : Actor
 		else
 		{
 			console.printf("Cat received a hug, total purrs: %d", purrs);
-			A_StartSound("enemies/cat/purr1");
+			A_StartSound("enemies/cat/purr1",catChannel);
 		}
 	}
 
