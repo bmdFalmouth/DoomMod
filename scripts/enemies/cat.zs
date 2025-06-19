@@ -90,7 +90,7 @@ class Cat : Actor
 		{
 			console.printf("Cat is purring happily!");
 			purrs = 0; // Reset purr count after reaching threshold
-			//A_StopSound(CHAN_VOICE);
+			A_StopSound(catChannel);
 			SetState(FindState("Death"));
 		}
 		else
