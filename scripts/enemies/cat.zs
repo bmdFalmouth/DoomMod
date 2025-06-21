@@ -22,7 +22,10 @@ class Cat : Actor
 	int hunger;
 	int hungerCounter;
 	int hungerSeconds;
-	int catChannel;
+	int purrChannel;
+	int meowChannel;
+
+	int seeCounter;
 
 	States
 	{
@@ -35,7 +38,9 @@ class Cat : Actor
 			hunger=100;
 			hungerCounter=0;
 			hungerSeconds=0;
-			catChannel=10;
+			purrChannel=10;
+			meowChannel=11;
+			seeCounter=0;
 			console.printf("Cat spawned");
 			A_Look();
 		}
@@ -43,9 +48,6 @@ class Cat : Actor
 	See:
 		TBID A 1 
 		{
-			if (!IsActorPlayingSound(catChannel,"enemies/cat/meow1")){
-				A_StartSound("enemies/cat/meow1",catChannel);
-			}
 			console.printf("Cat sees player");
 			A_Chase();
 		}
@@ -53,10 +55,16 @@ class Cat : Actor
 
 	Melee:
 	Missile:
-		TBID A 1 
+		TBID A 8 
 		{
 			console.printf("Cat facing missile");
 			A_FaceTarget();
+		}
+		TBID A 6
+		{
+			if (!IsActorPlayingSound(meowChannel,"enemies/cat/meow1")){
+				A_StartSound("enemies/cat/meow1",meowChannel);
+			}
 		}
 		Goto See;
 	Pain:
@@ -90,13 +98,14 @@ class Cat : Actor
 		{
 			console.printf("Cat is purring happily!");
 			purrs = 0; // Reset purr count after reaching threshold
-			A_StopSound(catChannel);
+			A_StopSound(purrChannel);
+			A_StopSound(meowChannel);
 			SetState(FindState("Death"));
 		}
 		else
 		{
 			console.printf("Cat received a hug, total purrs: %d", purrs);
-			A_StartSound("enemies/cat/purr1",catChannel);
+			A_StartSound("enemies/cat/purr1",purrChannel);
 		}
 	}
 
