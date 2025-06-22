@@ -60,7 +60,8 @@ class Pet : Weapon
 		{
 			console.printf("Hug hit: %s", t.HitActor.GetClassName());
 			Cat cat = Cat(t.HitActor);
-			cat.TakePet();
+			if (cat!=null)
+				cat.TakePet();
 		}
 	}
 }

@@ -14,6 +14,7 @@ class Cat : Actor
 		+FLOORCLIP
 		Tag "$CAT";
 		Scale 0.2;		
+		Cat.Hunger 100;
 	}
 
 	int purrs;
@@ -22,37 +23,37 @@ class Cat : Actor
 	int hunger;
 	int hungerCounter;
 	int hungerSeconds;
-	int purrChannel;
-	int meowChannel;
+	int soundChannel;
 
 	int seeCounter;
+	CatFood catFood;
+
+	property Hunger: hunger;
 
 	States
 	{
 	Spawn:
-		TBID A -1 
+		TBID A 1
 		{
+			console.printf("Cat spawned");
 			purrs=0;
 			sleepCounter=0;
 			sleepSeconds=0;
 			hunger=100;
 			hungerCounter=0;
 			hungerSeconds=0;
-			purrChannel=10;
-			meowChannel=11;
+			soundChannel=10;
 			seeCounter=0;
-			console.printf("Cat spawned");
-			A_Look();
 		}
-		Loop;
+		TBID A 1 A_Look;
+		loop;
 	See:
-		TBID A 1 
+		TBID A 2 
 		{
 			console.printf("Cat sees player");
 			A_Chase();
 		}
 		Loop;
-
 	Melee:
 	Missile:
 		TBID A 8 
@@ -62,8 +63,9 @@ class Cat : Actor
 		}
 		TBID A 6
 		{
-			if (!IsActorPlayingSound(meowChannel,"enemies/cat/meow1")){
-				A_StartSound("enemies/cat/meow1",meowChannel);
+			if ((!IsActorPlayingSound(soundChannel,"enemies/cat/meow1")) && (Random(0,100)>60))
+			{
+				A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
 			}
 		}
 		Goto See;
@@ -76,45 +78,9 @@ class Cat : Actor
 		}
 		Goto See;
 	Death:
-		TBID A 1
+		TBSL A 1
 		{
 			console.printf("Cat is sleeping");
-		}
-		TBID A 1 A_Scream;
-		TBID A 1;
-		TBID A 1 A_NoBlocking;
-		TBSL A -1;
-		Stop;
-	Raise:
-		TBSL A 1;
-		TBID A 1;
-		Goto See;
-    }
-
-	void TakePet()
-	{
-		purrs++;
-		if (purrs >= 5)
-		{
-			console.printf("Cat is purring happily!");
-			purrs = 0; // Reset purr count after reaching threshold
-			A_StopSound(purrChannel);
-			A_StopSound(meowChannel);
-			SetState(FindState("Death"));
-		}
-		else
-		{
-			console.printf("Cat received a hug, total purrs: %d", purrs);
-			A_StartSound("enemies/cat/purr1",purrChannel);
-		}
-	}
-
-	override void Tick()
-	{
-		Super.Tick();
-	
-		if (InStateSequence(FindState("Death"),ResolveState("Death")))
-		{
 			sleepCounter++;
 			if ((sleepCounter%35)==0)
 			{
@@ -124,22 +90,64 @@ class Cat : Actor
 			{
 				sleepCounter=0;
 				sleepSeconds=0;
-				SetState(FindState("Raise"));
+				return ResolveState("Raise");
 			}
+			return ResolveState(null);
+		}
+		loop;
+	Raise:
+		TBSL A 1;
+		TBID A 1;
+		Goto See;
+	Hungry:
+		TBID A 1
+		{
+			console.printf("Hungry");
+		}
+		loop;
+    }
+
+	void TakePet()
+	{
+		purrs++;
+		if (purrs >= 5)
+		{
+			console.printf("Cat is purring happily!");
+			purrs = 0; // Reset purr count after reaching threshold
+			A_StopSound(soundChannel);
+			SetState(FindState("Death"));
 		}
 		else
 		{
-			hungerCounter++;
-			if ((hungerCounter%35)==0)
+			console.printf("Cat received a hug, total purrs: %d", purrs);
+			A_StartSound("enemies/cat/purr1",soundChannel,CHANF_OVERLAP);
+		}
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+	
+		console.printf(String.Format("Hunger %i",hunger));
+		hungerCounter++;
+		if ((hungerCounter%35)==0)
+		{
+			hungerSeconds++;
+			if (hungerSeconds>10)
 			{
-				hungerSeconds++;
-				if ((hungerSeconds%10)==0)
-				{
-					hunger--;
-					//if hunger is <50 and food bowl is <50
-					//enter hug state!
-				}
+				hunger-=25;
+				hungerCounter=0;
+				hungerSeconds=0;
 			}
 		}
+		if (hunger<50)
+		{
+			SetState(FindState("Hungry"));
+		}
+	}
+
+	action void A_Eat()
+	{
+		
 	}
 }
