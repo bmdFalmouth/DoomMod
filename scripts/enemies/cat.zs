@@ -39,11 +39,11 @@ class Cat : Actor
 			purrs=0;
 			sleepCounter=0;
 			sleepSeconds=0;
-			hunger=100;
 			hungerCounter=0;
 			hungerSeconds=0;
 			soundChannel=10;
 			seeCounter=0;
+
 		}
 		TBID A 1 A_Look;
 		loop;
@@ -103,6 +103,21 @@ class Cat : Actor
 		TBID A 1
 		{
 			console.printf("Hungry");
+			//https://zdoom.org/wiki/Classes:ActorIterator
+			catFood=CatFood(Level.CreateActorIterator(200,"CatFood").Next());
+			if (catFood!=null)
+			{
+				console.printf("Found cat food");
+				SetOrigin(catFood.pos,true);
+				hunger=100;
+				return ResolveState("Spawn");
+
+			}
+			else
+			{
+				console.printf("Cat food not found");
+				return ResolveState(null);
+			}
 		}
 		loop;
     }
@@ -128,14 +143,14 @@ class Cat : Actor
 	{
 		Super.Tick();
 	
-		console.printf(String.Format("Hunger %i",hunger));
+		//console.printf(String.Format("Hunger %i",hunger));
 		hungerCounter++;
 		if ((hungerCounter%35)==0)
 		{
 			hungerSeconds++;
 			if (hungerSeconds>10)
 			{
-				hunger-=25;
+				hunger-=60;
 				hungerCounter=0;
 				hungerSeconds=0;
 			}
@@ -148,6 +163,6 @@ class Cat : Actor
 
 	action void A_Eat()
 	{
-		
+
 	}
 }
