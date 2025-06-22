@@ -21,4 +21,5 @@ map e1m1 lookup "TEST_MAP"
 DoomEdNums
 {
   10246 = "Cat"
+  10300 = "CatFood"
 }

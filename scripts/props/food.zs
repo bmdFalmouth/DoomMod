@@ -20,7 +20,7 @@ class CatFood : Actor
 	{
 	Spawn:
 		BOWL A -1 A_Look;
-		Loop;
+		Stop;
     }
 
 }
