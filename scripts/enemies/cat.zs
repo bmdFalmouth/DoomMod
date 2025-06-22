@@ -153,10 +153,14 @@ class Cat : Actor
 		catFood=CatFood(Level.CreateActorIterator(200,"CatFood").Next());
 		if (catFood!=null)
 		{
-			//need to find a way to change target
 			console.printf("Found cat food");
-			console.printf("Target now %s",target.GetClassName());
+			//console.printf("Target now %s",target.GetClassName());
 			SetOrigin(catFood.pos,true);
+			hunger=100;
+			if (hunger>50)
+			{
+				SetState(FindState("Spawn"));
+			}
 		}
 		else
 		{
@@ -168,13 +172,5 @@ class Cat : Actor
 	override void CollidedWith(Actor other, bool passive)
 	{
 		Super.CollidedWith(other,passive);
-		if (other.GetClassName()=="CatFood")
-		{
-			hunger+=50;
-			if (hunger>50)
-			{
-				SetState(FindState("Spawn"));
-			}
-		}
 	}
 }
