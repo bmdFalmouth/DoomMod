@@ -50,7 +50,7 @@ class Cat : Actor
 	See:
 		TBID A 2 
 		{
-			console.printf("Cat sees player");
+			console.printf("Cat sees player %s",target.GetClassName());
 			A_Chase();
 		}
 		Loop;
@@ -103,21 +103,7 @@ class Cat : Actor
 		TBID A 1
 		{
 			console.printf("Hungry");
-			//https://zdoom.org/wiki/Classes:ActorIterator
-			catFood=CatFood(Level.CreateActorIterator(200,"CatFood").Next());
-			if (catFood!=null)
-			{
-				console.printf("Found cat food");
-				SetOrigin(catFood.pos,true);
-				hunger=100;
-				return ResolveState("Spawn");
-
-			}
-			else
-			{
-				console.printf("Cat food not found");
-				return ResolveState(null);
-			}
+			A_Eat();
 		}
 		loop;
     }
@@ -161,8 +147,34 @@ class Cat : Actor
 		}
 	}
 
-	action void A_Eat()
+	void A_Eat()
 	{
+		//https://zdoom.org/wiki/Classes:ActorIterator
+		catFood=CatFood(Level.CreateActorIterator(200,"CatFood").Next());
+		if (catFood!=null)
+		{
+			//need to find a way to change target
+			console.printf("Found cat food");
+			console.printf("Target now %s",target.GetClassName());
+			SetOrigin(catFood.pos,true);
+		}
+		else
+		{
+			console.printf("Cat food not found");
+			return;
+		}		
+	}
 
+	override void CollidedWith(Actor other, bool passive)
+	{
+		Super.CollidedWith(other,passive);
+		if (other.GetClassName()=="CatFood")
+		{
+			hunger+=50;
+			if (hunger>50)
+			{
+				SetState(FindState("Spawn"));
+			}
+		}
 	}
 }
