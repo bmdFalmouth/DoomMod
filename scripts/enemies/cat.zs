@@ -100,10 +100,22 @@ class Cat : Actor
 		TBID A 1;
 		Goto See;
 	Hungry:
-		TBID A 1
+		TBID A 5
 		{
 			console.printf("Hungry");
-			A_Eat();
+			A_Hungry();
+		}
+		loop;
+	Eating:
+		TBID A 5{
+			hunger+=20;
+			if (hunger>50)
+			{
+				return ResolveState("Spawn");
+			}
+			else{
+				return ResolveState(null);
+			}
 		}
 		loop;
     }
@@ -143,11 +155,12 @@ class Cat : Actor
 		}
 		if (hunger<50)
 		{
-			SetState(FindState("Hungry"));
+			//BUG: There is an issue with this state right now
+			//SetState(FindState("Hungry"));
 		}
 	}
 
-	void A_Eat()
+	void A_Hungry()
 	{
 		//https://zdoom.org/wiki/Classes:ActorIterator
 		catFood=CatFood(Level.CreateActorIterator(200,"CatFood").Next());
@@ -156,11 +169,7 @@ class Cat : Actor
 			console.printf("Found cat food");
 			//console.printf("Target now %s",target.GetClassName());
 			SetOrigin(catFood.pos,true);
-			hunger=100;
-			if (hunger>50)
-			{
-				SetState(FindState("Spawn"));
-			}
+			SetState(FindState("Eat"));
 		}
 		else
 		{
