@@ -6,7 +6,7 @@ class CatFood : Actor
         //$Category "Props"
 		//$Sprite "BOWLA0"
 		Health 20;
-		Radius 20;
+		Radius 5;
 		Height 56;
 		Speed 0;
 		PainChance 0;

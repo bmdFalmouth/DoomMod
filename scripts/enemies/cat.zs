@@ -6,7 +6,7 @@ class Cat : Actor
         //$Category "Monsters"
 		//$Sprite "TBIDA0"
 		Health 20;
-		Radius 20;
+		Radius 10;
 		Height 56;
 		Speed 2;
 		PainChance 200;
@@ -55,20 +55,25 @@ class Cat : Actor
 		}
 		Loop;
 	Melee:
-	Missile:
 		TBID A 8 
 		{
 			console.printf("Cat facing missile");
 			A_FaceTarget();
+			if (target.GetClassName()=="CatFood")
+			{
+				return ResolveState("Eating");
+			}
+			return ResolveState(null);
 		}
 		TBID A 6
 		{
 			if ((!IsActorPlayingSound(soundChannel,"enemies/cat/meow1")) && (Random(0,100)>60))
 			{
 				A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
+				return ResolveState("See");
 			}
+			return ResolveState(null);
 		}
-		Goto See;
 	Pain:
 		TBID A 1;
 		TBID A 1
@@ -111,11 +116,10 @@ class Cat : Actor
 			hunger+=20;
 			if (hunger>50)
 			{
-				return ResolveState("Spawn");
+				target=players[0].mo;
+				return ResolveState("See");
 			}
-			else{
-				return ResolveState(null);
-			}
+			return ResolveState(null);
 		}
 		loop;
     }
