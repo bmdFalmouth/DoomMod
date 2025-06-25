@@ -13,7 +13,8 @@ class CatFood : Actor
         +SOLID
 		+FLOORCLIP
 		Tag "$CAT_FOOD";
-		Scale 0.2;		
+		Scale 0.2;	
+		Monster;	
 	}
 
     States

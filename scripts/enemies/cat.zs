@@ -156,7 +156,7 @@ class Cat : Actor
 		if (hunger<50)
 		{
 			//BUG: There is an issue with this state right now
-			//SetState(FindState("Hungry"));
+			SetState(FindState("Hungry"));
 		}
 	}
 
@@ -167,9 +167,12 @@ class Cat : Actor
 		if (catFood!=null)
 		{
 			console.printf("Found cat food");
-			//console.printf("Target now %s",target.GetClassName());
-			SetOrigin(catFood.pos,true);
-			SetState(FindState("Eat"));
+			A_ClearTarget();
+			target=catFood;
+			A_Chase();
+			console.printf("Target now %s",target.GetClassName());
+			//SetOrigin(catFood.pos,true);
+			//SetState(FindState("Eat"));
 		}
 		else
 		{
