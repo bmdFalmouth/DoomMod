@@ -12,7 +12,8 @@ class ThoughtBubble : Actor
 		PainChance 200;
 		Monster;
 		+FLOORCLIP
-		Tag "$CAT";
+        +NOGRAVITY
+		Tag "$THOUGHT";
 		Scale 0.2;		
 	}
 

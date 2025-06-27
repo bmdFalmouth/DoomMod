@@ -112,7 +112,7 @@ class Cat : Actor
 			if (!catFood.IsEmpty())
 			{
 				catFood.Eat();
-				hunger+=20;
+				hunger+=30;
 				if (hunger>50)
 				{
 					target=players[0].mo;
@@ -174,7 +174,7 @@ class Cat : Actor
 			hungerSeconds++;
 			if (hungerSeconds>10)
 			{
-				hunger-=60;
+				hunger-=20;
 				hungerCounter=0;
 				hungerSeconds=0;
 			}
@@ -205,8 +205,6 @@ class Cat : Actor
 			target=catFood;
 			A_Chase();
 			console.printf("Target now %s",target.GetClassName());
-			//SetOrigin(catFood.pos,true);
-			//SetState(FindState("Eat"));
 		}
 		else
 		{
