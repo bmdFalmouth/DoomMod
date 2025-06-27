@@ -1,5 +1,12 @@
 GameInfo{
   PlayerClasses = "MyPlayer"
+  AdvisoryTime = 0
+	titlepage = "TBTITLE"
+	creditpage = "TBTITLE"
+  ENDOOM=""
+  QuitSound="enemies/cat/meow1"
+  QuitMessages=""
+  TitleMusic=""
 }
 
 clearepisodes
