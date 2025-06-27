@@ -4,7 +4,7 @@ class Cat : Actor
 	{
 		//$Title "Cat"
         //$Category "Monsters"
-		//$Sprite "TBIDA0"
+		//$Sprite "TBIDA"
 		Health 20;
 		Radius 10;
 		Height 56;
@@ -27,6 +27,9 @@ class Cat : Actor
 
 	int seeCounter;
 	CatFood catFood;
+	ThoughtBubble thoughtBubble;
+
+	Vector3 thoughtPos;
 
 	property Hunger: hunger;
 
@@ -36,14 +39,6 @@ class Cat : Actor
 		TBID A 1
 		{
 			console.printf("Cat spawned");
-			purrs=0;
-			sleepCounter=0;
-			sleepSeconds=0;
-			hungerCounter=0;
-			hungerSeconds=0;
-			soundChannel=10;
-			seeCounter=0;
-
 		}
 		TBID A 1 A_Look;
 		loop;
@@ -113,16 +108,43 @@ class Cat : Actor
 		loop;
 	Eating:
 		TBID A 5{
-			hunger+=20;
-			if (hunger>50)
+			console.printf("Eating");
+			if (!catFood.IsEmpty())
 			{
-				target=players[0].mo;
-				return ResolveState("See");
+				catFood.Eat();
+				hunger+=20;
+				if (hunger>50)
+				{
+					target=players[0].mo;
+					return ResolveState("See");
+				}
 			}
+			else{
+				return ResolveState("Hungry");
+			}
+
 			return ResolveState(null);
 		}
 		loop;
     }
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		
+		purrs=0;
+		sleepCounter=0;
+		sleepSeconds=0;
+		hungerCounter=0;
+		hungerSeconds=0;
+		soundChannel=10;
+		seeCounter=0;
+		thoughtPos=Vec3Offset(10, 10, 60);
+
+		//spawn thought bubble
+		thoughtBubble=ThoughtBubble(Spawn('ThoughtBubble', thoughtPos));
+	}
+
 
 	void TakePet()
 	{
@@ -159,14 +181,22 @@ class Cat : Actor
 		}
 		if (hunger<50)
 		{
-			//BUG: There is an issue with this state right now
 			SetState(FindState("Hungry"));
 		}
+
+		//move thought bubble
+		//thoughtBubble
+		thoughtPos=Vec3Offset(10, 10, 60);
+		thoughtBubble.SetOrigin(thoughtPos,false);
 	}
 
 	void A_Hungry()
 	{
 		//https://zdoom.org/wiki/Classes:ActorIterator
+		if ((!IsActorPlayingSound(soundChannel,"enemies/cat/meow1")) && (Random(0,100)>50))
+		{
+			A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
+		}
 		catFood=CatFood(Level.CreateActorIterator(200,"CatFood").Next());
 		if (catFood!=null)
 		{

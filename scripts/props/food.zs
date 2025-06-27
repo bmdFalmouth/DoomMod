@@ -4,7 +4,7 @@ class CatFood : Actor
 	{
 		//$Title "CatFood"
         //$Category "Props"
-		//$Sprite "BOWLA0"
+		//$Sprite "BOWLA"
 		Health 20;
 		Radius 5;
 		Height 56;
@@ -15,7 +15,11 @@ class CatFood : Actor
 		Tag "$CAT_FOOD";
 		Scale 0.2;	
 		Monster;	
+		CatFood.Amount 100;
 	}
+
+	int amount;
+	property Amount: amount;
 
     States
 	{
@@ -23,5 +27,19 @@ class CatFood : Actor
 		BOWL A -1 A_Look;
 		Stop;
     }
+
+	bool IsEmpty()
+	{
+		if (amount<50)
+			return true;
+		
+		return false;
+	}
+
+	void Eat()
+	{
+		amount-=25;
+		console.printf("Eat %d", amount);
+	}
 
 }
