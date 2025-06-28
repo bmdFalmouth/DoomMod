@@ -56,7 +56,12 @@ class Cat : Actor
 	See:
 		TBID A 2 
 		{
-			console.printf("Cat sees player %s",target.GetClassName());
+			//if target is food
+			if (target.GetClassName()=="CatFood")
+				thoughtBubble.ChangeThought(1);
+			else
+				thoughtBubble.ChangeThought(3);
+			console.printf("Cat sees target %s",target.GetClassName());
 			A_Chase();
 		}
 		Loop;
@@ -89,9 +94,10 @@ class Cat : Actor
 		}
 		Goto See;
 	Death:
-		TBSL A 1
+		TBSE A 1
 		{
 			console.printf("Cat is sleeping");
+			thoughtBubble.ChangeThought(2);
 			sleepCounter++;
 			if ((sleepCounter%35)==0)
 			{
@@ -107,7 +113,7 @@ class Cat : Actor
 		}
 		loop;
 	Raise:
-		TBSL A 1;
+		TBSE A 1;
 		TBID A 1;
 		Goto See;
 	Hungry:
@@ -115,11 +121,13 @@ class Cat : Actor
 		{
 			console.printf("Hungry");
 			A_Hungry();
+			thoughtBubble.ChangeThought(1);
 		}
 		loop;
 	Eating:
 		TBID A 5{
 			console.printf("Eating");
+			thoughtBubble.ChangeThought(1);
 			if (!catFood.IsEmpty())
 			{
 				catFood.Eat();
