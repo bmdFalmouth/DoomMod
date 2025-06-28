@@ -17,6 +17,8 @@ class ThoughtBubble : Actor
 		Scale 0.2;		
 	}
 
+	
+
     static const name THOUGHT_SPRITES[] = 
     {
         'TBBL',

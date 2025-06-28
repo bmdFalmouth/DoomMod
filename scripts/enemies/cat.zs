@@ -1,3 +1,5 @@
+
+
 class Cat : Actor
 {
 	Default
@@ -16,14 +18,23 @@ class Cat : Actor
 		Scale 0.2;		
 	}
 
+	enum EThoughtImageIndex : uint
+	{
+    	BLANK,
+		HUNGRY,
+		SLEEP,
+		PETS
+	}
+
 	//constants
 	const MAX_NO_PURRS=5;
 	const MEOW_CHANCE=60;
 	const MAX_SECS_SLEEP=5;
-	const EAT_AMOUNT=30;
+	const EAT_AMOUNT=1;
 	const HUNGRY_THRESHOLD=50;
 	const MAX_SECS_HUNGRY=10;
 	const HUNGRY_DECREMENT=20;
+	const MAX_SECS_EAT=10;
 
 	const CAT_FOOD_ID=200;
 
@@ -35,8 +46,10 @@ class Cat : Actor
 	int hungerCounter;
 	int hungerSeconds;
 	int soundChannel;
-
 	int seeCounter;
+	int eatCounter;
+	int eatSeconds;
+
 	CatFood catFood;
 	ThoughtBubble thoughtBubble;
 
@@ -58,9 +71,9 @@ class Cat : Actor
 		{
 			//if target is food
 			if (target.GetClassName()=="CatFood")
-				thoughtBubble.ChangeThought(1);
+				thoughtBubble.ChangeThought(HUNGRY);
 			else
-				thoughtBubble.ChangeThought(3);
+				thoughtBubble.ChangeThought(PETS);
 			console.printf("Cat sees target %s",target.GetClassName());
 			A_Chase();
 		}
@@ -97,7 +110,7 @@ class Cat : Actor
 		TBSE A 1
 		{
 			console.printf("Cat is sleeping");
-			thoughtBubble.ChangeThought(2);
+			thoughtBubble.ChangeThought(SLEEP);
 			sleepCounter++;
 			if ((sleepCounter%35)==0)
 			{
@@ -121,15 +134,17 @@ class Cat : Actor
 		{
 			console.printf("Hungry");
 			A_Hungry();
-			thoughtBubble.ChangeThought(1);
+			thoughtBubble.ChangeThought(HUNGRY);
 		}
 		loop;
 	Eating:
 		TBID A 5{
+			//need to rewrite this!
 			console.printf("Eating");
-			thoughtBubble.ChangeThought(1);
+			thoughtBubble.ChangeThought(HUNGRY);
 			if (!catFood.IsEmpty())
 			{
+
 				catFood.Eat();
 				hunger+=EAT_AMOUNT;
 				if (hunger>HUNGRY_THRESHOLD)
@@ -138,10 +153,6 @@ class Cat : Actor
 					return ResolveState("See");
 				}
 			}
-			else{
-				return ResolveState("Hungry");
-			}
-
 			return ResolveState(null);
 		}
 		loop;
