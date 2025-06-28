@@ -15,11 +15,12 @@ class CatFood : Actor
 		Tag "$CAT_FOOD";
 		Scale 0.2;	
 		Monster;	
-		CatFood.Amount 100;
 	}
 
+	//constants
+	const EAT_AMOUNT=25;
+
 	int amount;
-	property Amount: amount;
 
     States
 	{
@@ -27,6 +28,12 @@ class CatFood : Actor
 		BOWL A -1 A_Look;
 		Stop;
     }
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		amount=100;
+	}
 
 	bool IsEmpty()
 	{
@@ -38,7 +45,7 @@ class CatFood : Actor
 
 	void Eat()
 	{
-		amount-=25;
+		amount-=EAT_AMOUNT;
 		console.printf("Eat %d", amount);
 	}
 

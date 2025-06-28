@@ -14,8 +14,19 @@ class Cat : Actor
 		+FLOORCLIP
 		Tag "$CAT";
 		Scale 0.2;		
-		Cat.Hunger 100;
 	}
+
+	//constants
+	const MAX_NO_PURRS=5;
+	const MEOW_CHANCE=60;
+	const MAX_SECS_SLEEP=5;
+	const EAT_AMOUNT=30;
+	const HUNGRY_THRESHOLD=50;
+	const MAX_SECS_HUNGRY=10;
+	const HUNGRY_DECREMENT=20;
+
+	const CAT_FOOD_ID=200;
+
 
 	int purrs;
 	int sleepCounter;
@@ -30,8 +41,8 @@ class Cat : Actor
 	ThoughtBubble thoughtBubble;
 
 	Vector3 thoughtPos;
+	Vector3 thoughtOffsets;
 
-	property Hunger: hunger;
 
 	States
 	{
@@ -62,7 +73,7 @@ class Cat : Actor
 		}
 		TBID A 6
 		{
-			if ((!IsActorPlayingSound(soundChannel,"enemies/cat/meow1")) && (Random(0,100)>60))
+			if ((!IsActorPlayingSound(soundChannel,"enemies/cat/meow1")) && (Random(0,100)>MEOW_CHANCE))
 			{
 				A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
 				return ResolveState("See");
@@ -86,7 +97,7 @@ class Cat : Actor
 			{
 				sleepSeconds++;
 			}
-			if (sleepSeconds>5)
+			if (sleepSeconds>MAX_SECS_SLEEP)
 			{
 				sleepCounter=0;
 				sleepSeconds=0;
@@ -112,8 +123,8 @@ class Cat : Actor
 			if (!catFood.IsEmpty())
 			{
 				catFood.Eat();
-				hunger+=30;
-				if (hunger>50)
+				hunger+=EAT_AMOUNT;
+				if (hunger>HUNGRY_THRESHOLD)
 				{
 					target=players[0].mo;
 					return ResolveState("See");
@@ -139,7 +150,12 @@ class Cat : Actor
 		hungerSeconds=0;
 		soundChannel=10;
 		seeCounter=0;
-		thoughtPos=Vec3Offset(10, 10, 60);
+		hunger=100;
+		
+		thoughtOffsets.x=10;
+		thoughtOffsets.y=10;
+		thoughtOffsets.z=60;
+		thoughtPos=Vec3Offset(thoughtOffsets.x, thoughtOffsets.y, thoughtOffsets.z);
 
 		//spawn thought bubble
 		thoughtBubble=ThoughtBubble(Spawn('ThoughtBubble', thoughtPos));
@@ -149,7 +165,7 @@ class Cat : Actor
 	void TakePet()
 	{
 		purrs++;
-		if (purrs >= 5)
+		if (purrs >= MAX_NO_PURRS)
 		{
 			console.printf("Cat is purring happily!");
 			purrs = 0; // Reset purr count after reaching threshold
@@ -172,32 +188,32 @@ class Cat : Actor
 		if ((hungerCounter%35)==0)
 		{
 			hungerSeconds++;
-			if (hungerSeconds>10)
+			if (hungerSeconds>MAX_SECS_HUNGRY)
 			{
-				hunger-=20;
+				hunger-=HUNGRY_DECREMENT;
 				hungerCounter=0;
 				hungerSeconds=0;
 			}
 		}
-		if (hunger<50)
+		if (hunger<HUNGRY_THRESHOLD)
 		{
 			SetState(FindState("Hungry"));
 		}
 
 		//move thought bubble
 		//thoughtBubble
-		thoughtPos=Vec3Offset(10, 10, 60);
+		thoughtPos=Vec3Offset(thoughtOffsets.x, thoughtOffsets.y, thoughtOffsets.z);
 		thoughtBubble.SetOrigin(thoughtPos,false);
 	}
 
 	void A_Hungry()
 	{
 		//https://zdoom.org/wiki/Classes:ActorIterator
-		if ((!IsActorPlayingSound(soundChannel,"enemies/cat/meow1")) && (Random(0,100)>50))
+		if ((!IsActorPlayingSound(soundChannel,"enemies/cat/meow1")) && (Random(0,100)>MEOW_CHANCE))
 		{
 			A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
 		}
-		catFood=CatFood(Level.CreateActorIterator(200,"CatFood").Next());
+		catFood=CatFood(Level.CreateActorIterator(CAT_FOOD_ID,"CatFood").Next());
 		if (catFood!=null)
 		{
 			console.printf("Found cat food");
