@@ -60,10 +60,6 @@ class Cat : Actor
 	States
 	{
 	Spawn:
-		TBID A 1
-		{
-			console.printf("Cat spawned");
-		}
 		TBID A 1 A_Look;
 		loop;
 	See:
@@ -74,14 +70,12 @@ class Cat : Actor
 				thoughtBubble.ChangeThought(HUNGRY);
 			else
 				thoughtBubble.ChangeThought(PETS);
-			console.printf("Cat sees target %s",target.GetClassName());
 			A_Chase();
 		}
 		Loop;
 	Melee:
 		TBID A 8 
 		{
-			console.printf("Cat facing missile");
 			A_FaceTarget();
 			if (target.GetClassName()=="CatFood")
 			{
@@ -102,14 +96,12 @@ class Cat : Actor
 		TBID A 1;
 		TBID A 1
 		{
-			console.printf("Cat in pain");
 			A_Pain();
 		}
 		Goto See;
 	Death:
 		TBSE A 1
 		{
-			console.printf("Cat is sleeping");
 			thoughtBubble.ChangeThought(SLEEP);
 			sleepCounter++;
 			if ((sleepCounter%35)==0)
@@ -132,7 +124,6 @@ class Cat : Actor
 	Hungry:
 		TBID A 5
 		{
-			console.printf("Hungry");
 			A_Hungry();
 			thoughtBubble.ChangeThought(HUNGRY);
 		}
@@ -140,11 +131,10 @@ class Cat : Actor
 	Eating:
 		TBID A 5{
 			//need to rewrite this!
-			console.printf("Eating");
 			thoughtBubble.ChangeThought(HUNGRY);
 			if (!catFood.IsEmpty())
 			{
-
+				console.printf("Eating");
 				catFood.Eat();
 				hunger+=EAT_AMOUNT;
 				if (hunger>HUNGRY_THRESHOLD)
@@ -178,6 +168,7 @@ class Cat : Actor
 
 		//spawn thought bubble
 		thoughtBubble=ThoughtBubble(Spawn('ThoughtBubble', thoughtPos));
+		catFood=CatFood(Level.CreateActorIterator(CAT_FOOD_ID,"CatFood").Next());
 	}
 
 
@@ -186,14 +177,12 @@ class Cat : Actor
 		purrs++;
 		if (purrs >= MAX_NO_PURRS)
 		{
-			console.printf("Cat is purring happily!");
 			purrs = 0; // Reset purr count after reaching threshold
 			A_StopSound(soundChannel);
 			SetState(FindState("Death"));
 		}
 		else
 		{
-			console.printf("Cat received a hug, total purrs: %d", purrs);
 			A_StartSound("enemies/cat/purr1",soundChannel,CHANF_OVERLAP);
 		}
 	}
@@ -232,14 +221,11 @@ class Cat : Actor
 		{
 			A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
 		}
-		catFood=CatFood(Level.CreateActorIterator(CAT_FOOD_ID,"CatFood").Next());
 		if (catFood!=null)
 		{
-			console.printf("Found cat food");
 			A_ClearTarget();
 			target=catFood;
 			A_Chase();
-			console.printf("Target now %s",target.GetClassName());
 		}
 		else
 		{
