@@ -10,8 +10,8 @@ DEFAULTLISTMENU
 LISTMENU "MainMenu"
 {
     LineSpacing 16	// This must account for some single-graphic replacements, so it cannot be widened
-	StaticPatch 94, 2, "m_title"
-	Position 97, 72
+	StaticPatch 110, 0, "m_title"
+	Position 97, 80
     PatchItem "M_NGAME", "n", "PlayerclassMenu"
     ifOption(SwapMenu)
     {
