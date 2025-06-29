@@ -16,15 +16,13 @@ class FoodPuch : Weapon
 		FOOP A 1 A_Lower;
 		Loop;
 	Select:
-		ARMI A 1 A_Raise;
+		FOOP A 1 A_Raise;
 		Loop;
 	Fire:
 		FOOP A 3;
 		FOOP B 4;
 		FOOP C 3;
 		FOOP D 5 A_Fill;
-		FOOP C 2;
-		FOOP D 5 A_ReFire;
 		FOOP CBA 2;
 		Goto Ready;
 	}
