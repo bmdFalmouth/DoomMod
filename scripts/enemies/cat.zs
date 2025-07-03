@@ -8,12 +8,14 @@ class Cat : Actor
         //$Category "Monsters"
 		//$Sprite "TBIDA"
 		Health 20;
-		Radius 10;
+		Radius 5;
 		Height 56;
-		Speed 2;
+		Speed 6;
 		PainChance 200;
 		Monster;
 		+FLOORCLIP
+		+FLOAT
+		+BOUNCEONFLOORS
 		Tag "$CAT";
 		Scale 0.2;		
 	}
