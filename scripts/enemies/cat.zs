@@ -65,7 +65,7 @@ class Cat : Actor
 		TBID A 1 A_Look;
 		loop;
 	See:
-		TBID A 2 
+		TBWL ABCDEF 6 
 		{
 			//if target is food
 			if (target.GetClassName()=="CatFood")
@@ -124,7 +124,7 @@ class Cat : Actor
 		TBID A 1;
 		Goto See;
 	Hungry:
-		TBID A 5
+		TBWL ABCDEF 6
 		{
 			A_Hungry();
 			thoughtBubble.ChangeThought(HUNGRY);
