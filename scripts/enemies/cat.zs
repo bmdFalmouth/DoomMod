@@ -148,7 +148,12 @@ class Cat : Actor
 			return ResolveState(null);
 		}
 		loop;
+
+	Pets:
+		TBPE ABC 5;
+		loop;
     }
+
 
 	override void PostBeginPlay()
 	{
@@ -186,6 +191,7 @@ class Cat : Actor
 		else
 		{
 			A_StartSound("enemies/cat/purr1",soundChannel,CHANF_OVERLAP);
+			SetState(FindState("Pets"));
 		}
 	}
 
