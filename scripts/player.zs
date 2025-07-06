@@ -1,7 +1,7 @@
 class MyPlayer : DoomPlayer
 {
     default{
-        speed 3;
+        speed 2;
         Player.StartItem "Pet";
         Player.StartItem "FoodPuch";
         Player.WeaponSlot 1,"Pet";
