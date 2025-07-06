@@ -56,10 +56,12 @@ class FoodPuch : Weapon
 
 		if (hit)
 		{
-			console.printf("Food hit: %s", t.HitActor.GetClassName());
-			CatFood bowl = CatFood(t.HitActor);
-			if (bowl!=null)
-				bowl.Fill();
+			if (t.HitActor){
+				console.printf("Food hit: %s", t.HitActor.GetClassName());
+				CatFood bowl = CatFood(t.HitActor);
+				if (bowl!=null)
+					bowl.Fill();
+			}
 		}
 	}
 }
