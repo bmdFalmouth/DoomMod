@@ -151,7 +151,7 @@ class Cat : Actor
 
 	Pets:
 		TBPE ABC 5;
-		loop;
+		goto See;
     }
 
 
@@ -191,7 +191,10 @@ class Cat : Actor
 		else
 		{
 			A_StartSound("enemies/cat/purr1",soundChannel,CHANF_OVERLAP);
-			SetState(FindState("Pets"));
+			if (!(InStateSequence(CurState, ResolveState("Pets"))))
+			{
+				SetState(FindState("Pets"));
+			}
 		}
 	}
 

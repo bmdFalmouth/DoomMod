@@ -42,7 +42,7 @@ class FoodPuch : Weapon
 		}
 
 		double ang = angle + Random2[Punch]() * (5.625 / 256);
-		double range = MeleeRange + MELEEDELTA;
+		double range = MeleeRange + (MELEEDELTA*2);
 		double pitch = AimLineAttack (ang, range, null, 0., ALF_CHECK3D);
 
 		double pz = self.height * 0.5 - self.floorclip + self.player.mo.AttackZOffset*self.player.crouchFactor;

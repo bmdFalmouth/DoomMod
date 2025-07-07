@@ -24,7 +24,7 @@ class ThoughtBubble : Actor
         'TBBL',
 		'TBHU',
 		'TBSL',
-		'TBPE'
+		'TBPT'
 
     };
 
@@ -43,7 +43,7 @@ class ThoughtBubble : Actor
 		TBSL A 1;
 		loop;
 	Pets:
-		TBPE A 1;
+		TBPT A 1;
 		loop;
     }
 
