@@ -15,6 +15,7 @@ episode e1m1
 	picname = "M_EPI1"
 	name = "Knee-Deep in the Dead"
 	key = "k"
+  NoSkillMenu
 }
 
 map e1m1 lookup "TEST_MAP"
