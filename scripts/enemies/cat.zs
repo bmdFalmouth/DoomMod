@@ -62,16 +62,18 @@ class Cat : Actor
 	States
 	{
 	Spawn:
-		TBID A 1 A_Look;
-		loop;
+		TBSE A 1 A_Look;
+		Goto Death;
 	See:
 		TBWL ABCDEF 6 
 		{
 			//if target is food
-			if (target.GetClassName()=="CatFood")
-				thoughtBubble.ChangeThought(HUNGRY);
-			else
-				thoughtBubble.ChangeThought(PETS);
+			if (target!=null){
+				if (target.GetClassName()=="CatFood")
+					thoughtBubble.ChangeThought(HUNGRY);
+				else
+					thoughtBubble.ChangeThought(PETS);
+			}
 			A_Chase();
 		}
 		Loop;
