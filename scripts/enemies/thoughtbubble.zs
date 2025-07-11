@@ -67,6 +67,7 @@ class ThoughtBubble : Actor
 	void ChangeThought(int thoughtIndex)
 	{
 		sprite = GetSpriteIndex(THOUGHT_SPRITES[thoughtIndex]);
+		//visible=true;
 		//ToggleVisibility();
 	}
 
