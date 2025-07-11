@@ -32,7 +32,7 @@ class Cat : Actor
 	const MEOW_CHANCE=60;
 	const MAX_SECS_SLEEP=5;
 	const EAT_AMOUNT=1;
-	const HUNGRY_THRESHOLD=10;
+	const HUNGRY_THRESHOLD=30;
 	const MAX_SECS_HUNGRY=10;
 	const HUNGRY_DECREMENT=20;
 	const MAX_SECS_EAT=10;
