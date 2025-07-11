@@ -17,6 +17,12 @@ class ThoughtBubble : Actor
 		Scale 0.2;		
 	}
 
+	const thoughtSecondsVisible=10;
+
+	bool visible;
+	int thoughtCounter;
+	int thoughtSeconds;
+	
 	
 
     static const name THOUGHT_SPRITES[] = 
@@ -51,10 +57,44 @@ class ThoughtBubble : Actor
     {
         super.PostBeginPlay();
         sprite = GetSpriteIndex(THOUGHT_SPRITES[0]);
+		visible=false;
+		thoughtCounter=0;
+		thoughtSeconds=0;
+		//A_SetRenderStyle(1.0,STYLE_None);
+		
     }
 
 	void ChangeThought(int thoughtIndex)
 	{
 		sprite = GetSpriteIndex(THOUGHT_SPRITES[thoughtIndex]);
+		//ToggleVisibility();
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+		thoughtCounter++;
+		if ((thoughtCounter%35)==0)
+		{
+			thoughtSeconds++;
+			thoughtCounter=0;
+		}
+		if (visible)
+		{
+			if (thoughtSeconds>thoughtSecondsVisible)
+			{
+				//ToggleVisibility();
+			}
+		}
+	}
+
+	void ToggleVisibility()
+	{
+		visible=!visible;
+		int style=STYLE_None;
+		if (visible)
+			style=STYLE_Normal;
+		
+		A_SetRenderStyle(1.0,style);
 	}
 }
