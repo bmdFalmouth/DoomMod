@@ -15,7 +15,6 @@ class Cat : Actor
 		Monster;
 		+FLOORCLIP
 		+FLOAT
-		+BOUNCEONFLOORS
 		Tag "$CAT";
 		Scale 0.2;		
 	}
@@ -33,7 +32,7 @@ class Cat : Actor
 	const MEOW_CHANCE=60;
 	const MAX_SECS_SLEEP=5;
 	const EAT_AMOUNT=1;
-	const HUNGRY_THRESHOLD=50;
+	const HUNGRY_THRESHOLD=10;
 	const MAX_SECS_HUNGRY=10;
 	const HUNGRY_DECREMENT=20;
 	const MAX_SECS_EAT=10;
@@ -224,7 +223,7 @@ class Cat : Actor
 		//move thought bubble
 		//thoughtBubble
 		thoughtPos=Vec3Offset(thoughtOffsets.x, thoughtOffsets.y, thoughtOffsets.z);
-		thoughtBubble.SetOrigin(thoughtPos,false);
+		thoughtBubble.SetOrigin(thoughtPos,true);
 	}
 
 	void A_Hungry()
