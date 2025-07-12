@@ -32,7 +32,7 @@ class Cat : Actor
 	const MEOW_CHANCE=60;
 	const MAX_SECS_SLEEP=5;
 	const EAT_AMOUNT=1;
-	const HUNGRY_THRESHOLD=30;
+	const HUNGRY_THRESHOLD=50;
 	const MAX_SECS_HUNGRY=10;
 	const HUNGRY_DECREMENT=20;
 	const MAX_SECS_EAT=10;
@@ -50,12 +50,16 @@ class Cat : Actor
 	int seeCounter;
 	int eatCounter;
 	int eatSeconds;
+	bool firstSee;
 
 	CatFood catFood;
 	ThoughtBubble thoughtBubble;
 
 	Vector3 thoughtPos;
 	Vector3 thoughtOffsets;
+
+	Vector3 eatingOffsets;
+	Vector3 eatingPos;
 
 
 	States
@@ -70,8 +74,14 @@ class Cat : Actor
 			if (target!=null){
 				if (target.GetClassName()=="CatFood")
 					thoughtBubble.ChangeThought(HUNGRY);
-				else
+				else{
+					if ((!IsActorPlayingSound(soundChannel,"enemies/cat/meow1")) && (firstSee))
+					{
+						A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
+						firstSee=false;
+					}
 					thoughtBubble.ChangeThought(PETS);
+				}
 			}
 			A_Chase();
 		}
@@ -115,6 +125,7 @@ class Cat : Actor
 			{
 				sleepCounter=0;
 				sleepSeconds=0;
+				firstSee=true;
 				return ResolveState("Raise");
 			}
 			return ResolveState(null);
@@ -132,7 +143,9 @@ class Cat : Actor
 		}
 		loop;
 	Eating:
-		TBID A 5{
+		//we need to make sure we are just a bit offset from food
+		TBEA A 5{
+			SetOrigin(eatingPos,true);
 			//need to rewrite this!
 			thoughtBubble.ChangeThought(HUNGRY);
 			if (!catFood.IsEmpty())
@@ -177,6 +190,14 @@ class Cat : Actor
 		//spawn thought bubble
 		thoughtBubble=ThoughtBubble(Spawn('ThoughtBubble', thoughtPos));
 		catFood=CatFood(Level.CreateActorIterator(CAT_FOOD_ID,"CatFood").Next());
+
+		eatingOffsets.x=16;
+		eatingOffsets.y=16;
+		eatingOffsets.z=0;
+		eatingPos=catFood.Vec3Offset(eatingOffsets.x,eatingOffsets.y,eatingOffsets.z);
+
+
+		firstSee=true;
 	}
 
 
