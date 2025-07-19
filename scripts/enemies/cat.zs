@@ -191,8 +191,8 @@ class Cat : Actor
 		thoughtBubble=ThoughtBubble(Spawn('ThoughtBubble', thoughtPos));
 		catFood=CatFood(Level.CreateActorIterator(CAT_FOOD_ID,"CatFood").Next());
 
-		eatingOffsets.x=16;
-		eatingOffsets.y=16;
+		eatingOffsets.x=0;
+		eatingOffsets.y=0;
 		eatingOffsets.z=0;
 		eatingPos=catFood.Vec3Offset(eatingOffsets.x,eatingOffsets.y,eatingOffsets.z);
 
