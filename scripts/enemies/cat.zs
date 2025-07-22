@@ -16,7 +16,7 @@ class Cat : Actor
 		+FLOORCLIP
 		+FLOAT
 		Tag "$CAT";
-		Scale 0.2;		
+		Scale 0.3;		
 	}
 
 	enum EThoughtImageIndex : uint
