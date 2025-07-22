@@ -92,6 +92,7 @@ class Cat : Actor
 			A_FaceTarget();
 			if (target.GetClassName()=="CatFood")
 			{
+				Speed=6;
 				return ResolveState("Eating");
 			}
 			return ResolveState(null);
@@ -273,5 +274,12 @@ class Cat : Actor
 	override void CollidedWith(Actor other, bool passive)
 	{
 		Super.CollidedWith(other,passive);
+	}
+
+	void HearDreamies()
+	{
+		A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
+		Speed=15;
+		A_Chase();
 	}
 }
