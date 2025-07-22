@@ -6,6 +6,7 @@ version "4.11"
 //weapons
 #include "scripts/weapons/pet.zs"
 #include "scripts/weapons/foodPouch.zs"
+#include "scripts/weapons/dreamies.zs"
 
 //enemies
 #include "scripts/enemies/cat.zs"
