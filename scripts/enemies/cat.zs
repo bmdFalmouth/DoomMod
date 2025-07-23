@@ -283,4 +283,11 @@ class Cat : Actor
 		Speed=30;
 		A_Chase("Melee",null,CHF_NORANDOMTURN);
 	}
+
+	void TakeDreamies()
+	{
+		Speed=6;
+		hunger+=10;
+		SetState(FindState("Pets"));
+	}
 }

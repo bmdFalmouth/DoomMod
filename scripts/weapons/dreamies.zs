@@ -19,11 +19,10 @@ class Dreamies : Weapon
 		DREA A 1 A_Raise;
 		Loop;
 	Fire:
-		DREA A 3;
-		DREA B 4;
-		DREA A 3;
-		DREA B 5 A_Feed;
-		DREA BA 2;
+		DREL A 3;
+		DREL B 4;
+		DREL C 8 A_Feed;
+		DREL BA 2;
 		Goto Ready;
 	AltFire:
 		DREA A 3;
@@ -44,7 +43,7 @@ class Dreamies : Weapon
 
 	action void A_Feed()
 	{
-/* 		FLineTraceData t;
+		FLineTraceData t;
 
 		if (player != null)
 		{
@@ -57,7 +56,7 @@ class Dreamies : Weapon
 		}
 
 		double ang = angle + Random2[Punch]() * (5.625 / 256);
-		double range = MeleeRange + (MELEEDELTA*2);
+		double range = MeleeRange + MELEEDELTA;
 		double pitch = AimLineAttack (ang, range, null, 0., ALF_CHECK3D);
 
 		double pz = self.height * 0.5 - self.floorclip + self.player.mo.AttackZOffset*self.player.crouchFactor;
@@ -66,18 +65,17 @@ class Dreamies : Weapon
 				range,
 				pitch,
 				offsetz: pz,
-				data: t
-		);
+				data: t);
 
 		if (hit)
 		{
 			if (t.HitActor){
-				console.printf("Food hit: %s", t.HitActor.GetClassName());
-				CatFood bowl = CatFood(t.HitActor);
-				if (bowl!=null)
-					bowl.Fill();
+				console.printf("Hug hit: %s", t.HitActor.GetClassName());
+				Cat cat = Cat(t.HitActor);
+				if (cat!=null)
+					cat.TakeDreamies();
 			}
-		} */
+		}
 	}
 
 	action void A_Shake()
