@@ -9,12 +9,12 @@ class Cat : Actor
 		//$Sprite "TBIDA"
 		Health 20;
 		Radius 20;
-		Height 16;
+		Height 32;
 		Speed 6;
 		PainChance 200;
+		MaxStepHeight 64;
+		MaxDropOffHeight 64;
 		Monster;
-		+FLOORCLIP
-		+FLOAT
 		Tag "$CAT";
 		Scale 0.3;		
 	}
@@ -101,6 +101,7 @@ class Cat : Actor
 		{
 			if ((!IsActorPlayingSound(soundChannel,"enemies/cat/meow1")) && (Random(0,100)>MEOW_CHANCE))
 			{
+				Speed=6;
 				A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
 				return ResolveState("See");
 			}
@@ -279,7 +280,7 @@ class Cat : Actor
 	void HearDreamies()
 	{
 		A_StartSound("enemies/cat/meow1",soundChannel,CHANF_DEFAULT);
-		Speed=15;
-		A_Chase();
+		Speed=30;
+		A_Chase("Melee",null,CHF_NORANDOMTURN);
 	}
 }

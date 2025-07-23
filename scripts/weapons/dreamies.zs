@@ -27,7 +27,7 @@ class Dreamies : Weapon
 		Goto Ready;
 	AltFire:
 		DREA A 3;
-		DREA B 4;
+		DREA B 4 A_StartSound("weapons/dreamies/shake");
 		DREA A 3;
 		DREA B 5 A_Shake;
 		DREA BA 2;
