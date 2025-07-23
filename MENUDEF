@@ -3,8 +3,6 @@ DEFAULTLISTMENU
 	Font "BigFont", "Untranslated"
 	LineSpacing 20
     Selector "tb_sel", -32, -5
-	Font "BigUpper", "Red"
-	LineSpacing 18
 }
 
 LISTMENU "MainMenu"
