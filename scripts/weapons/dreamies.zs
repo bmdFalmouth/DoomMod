@@ -19,9 +19,9 @@ class Dreamies : Weapon
 		DREA A 1 A_Raise;
 		Loop;
 	Fire:
-		DREL A 3;
+		DREL A 3 A_Feed;
 		DREL B 4;
-		DREL C 8 A_Feed;
+		DREL C 8;
 		DREL BA 2;
 		Goto Ready;
 	AltFire:
