@@ -168,6 +168,12 @@ class Cat : Actor
 	Pets:
 		TBPE ABC 5;
 		goto See;
+	Treats:
+		TBDR A 5;
+		TBDR B 5;
+		TBDR C 2;
+		TBDR D 5;
+		goto See;
     }
 
 
@@ -286,8 +292,8 @@ class Cat : Actor
 
 	void TakeDreamies()
 	{
+		SetState(FindState("Treats"));
 		Speed=6;
 		hunger+=10;
-		SetState(FindState("Pets"));
 	}
 }
