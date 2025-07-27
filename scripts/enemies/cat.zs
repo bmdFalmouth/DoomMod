@@ -171,7 +171,7 @@ class Cat : Actor
 	Treats:
 		TBDR A 5;
 		TBDR B 5;
-		TBDR C 2;
+		TBDR C 7;
 		TBDR D 5;
 		goto See;
     }
