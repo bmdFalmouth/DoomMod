@@ -19,6 +19,10 @@ class GameLogicThinker : Thinker
     {
         Super.Tick();
         currentGameTime--;
+        if (currentGameTime==0)
+        {
+            Exit_Normal(0);
+        }
     }
 
     clearscope int GetCurrentTime()
