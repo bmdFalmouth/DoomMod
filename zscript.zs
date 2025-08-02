@@ -12,3 +12,10 @@ version "4.11"
 #include "scripts/enemies/cat.zs"
 #include "scripts/enemies/thoughtbubble.zs"
 #include "scripts/props/food.zs"
+
+//thinkers
+#include "scripts/thinkers/gameLogic.zs"
+
+//Event Handlers
+#include "scripts/eventHandlers/gameTimeUIHandler.zs"
+#include "scripts/eventHandlers/worldSetupHandler.zs"
