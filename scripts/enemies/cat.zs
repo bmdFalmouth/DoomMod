@@ -152,7 +152,6 @@ class Cat : Actor
 			thoughtBubble.ChangeThought(HUNGRY);
 			if (!catFood.IsEmpty())
 			{
-				console.printf("Eating");
 				catFood.Eat();
 				hunger+=EAT_AMOUNT;
 				if (hunger>HUNGRY_THRESHOLD)

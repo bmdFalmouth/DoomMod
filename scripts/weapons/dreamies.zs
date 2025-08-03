@@ -54,7 +54,7 @@ class Dreamies : Weapon
 					return;
 			}
 		}
-
+		
 		double ang = angle + Random2[Punch]() * (5.625 / 256);
 		double range = MeleeRange + MELEEDELTA;
 		double pitch = AimLineAttack (ang, range, null, 0., ALF_CHECK3D);
@@ -70,7 +70,6 @@ class Dreamies : Weapon
 		if (hit)
 		{
 			if (t.HitActor){
-				console.printf("Hug hit: %s", t.HitActor.GetClassName());
 				Cat cat = Cat(t.HitActor);
 				if (cat!=null)
 					cat.TakeDreamies();

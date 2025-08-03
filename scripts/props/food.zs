@@ -6,12 +6,13 @@ class CatFood : Actor
         //$Category "Props"
 		//$Sprite "BOWLA"
 		Health 20;
-		Radius 5;
+		Radius 10;
 		Height 56;
 		Speed 0;
 		PainChance 0;
         +SOLID
 		+FLOORCLIP
+		+FORCEXYBILLBOARD
 		Tag "$CAT_FOOD";
 		Scale 0.2;	
 		Monster;
@@ -70,7 +71,6 @@ class CatFood : Actor
 	{
 		amount-=2;
 		sprite = GetSpriteIndex(BOWL_SPRITES[CalculateSpriteIndex()]);
-		console.printf("Eat %d", amount);
 	}
 
 	int CalculateSpriteIndex()
