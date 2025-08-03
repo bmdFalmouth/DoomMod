@@ -1,8 +1,8 @@
 class GameLogicThinker : Thinker
 {
     //This is around 5 minutes
-    const MaxGameTime=10500;
-    //const MaxGameTime=1050;
+    //const MaxGameTime=10500;
+    const MaxGameTime=1050;
     int currentGameTime;
 
     int numberOfFeeds;

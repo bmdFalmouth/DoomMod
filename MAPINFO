@@ -8,6 +8,7 @@ GameInfo{
   QuitMessages=""
   TitleMusic=""
   AddEventHandlers="GameTimeUIHandler","WorldSetupHandler"
+  StatScreen_Single="TigerbunIntermission"
 }
 
 clearepisodes
@@ -25,7 +26,6 @@ map e1m1 lookup "TEST_MAP"
    cluster = 1
    par = 30
    sucktime = 1
-   intermission TigerbunIntermission
    next="EndTitle"
 }
 
