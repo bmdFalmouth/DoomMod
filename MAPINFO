@@ -17,7 +17,6 @@ episode e1m1
 	name = "Knee-Deep in the Dead"
 	key = "k"
   NoSkillMenu
-  noIntermission
 }
 
 map e1m1 lookup "TEST_MAP"
@@ -26,7 +25,7 @@ map e1m1 lookup "TEST_MAP"
    cluster = 1
    par = 30
    sucktime = 1
-   noIntermission
+   intermission TigerbunIntermission
    next="EndTitle"
 }
 
