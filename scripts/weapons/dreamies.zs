@@ -71,8 +71,10 @@ class Dreamies : Weapon
 		{
 			if (t.HitActor){
 				Cat cat = Cat(t.HitActor);
-				if (cat!=null)
+				if (cat!=null){
+					GameLogicThinker.GetInstance().IncreaseTreatStat();
 					cat.TakeDreamies();
+				}
 			}
 		}
 	}

@@ -42,7 +42,7 @@ class GameLogicThinker : Thinker
 
     void IncreaseTreatStat()
     {
-        numberOfFeeds++;
+        numberOfTreats++;
     }
 
     void IncreasePetsStat()
@@ -57,12 +57,32 @@ class GameLogicThinker : Thinker
 
     clearscope String GetStats()
     {
-        return String.Format("Sleeps : %d\nTreats : %d\nPets : %d\nFeeds :%d");
+        return String.Format("Sleeps : %d\nTreats : %d\nPets : %d\nFeeds :%d",numberOfSleeps,numberOfTreats,numberOfPets,numberOfFeeds);
     }
 
     clearscope int GetCurrentTime()
     {
         return currentGameTime;
+    }
+
+    clearscope int GetSleepsStat()
+    {
+        return numberOfSleeps;
+    }
+
+    clearscope int GetTreatStat()
+    {
+        return numberOfTreats;
+    }
+
+    clearscope int GetPetsStat()
+    {
+        return numberOfPets;
+    }
+
+    clearscope int GetFeedsStat()
+    {
+        return numberOfFeeds;
     }
 
     static GameLogicThinker GetInstance()

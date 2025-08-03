@@ -60,8 +60,10 @@ class Pet : Weapon
 		{
 			if (t.HitActor){
 				Cat cat = Cat(t.HitActor);
-				if (cat!=null)
+				if (cat!=null){
+					GameLogicThinker.GetInstance().IncreasePetsStat();
 					cat.TakePet();
+				}
 			}
 		}
 	}

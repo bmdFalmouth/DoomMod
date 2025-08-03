@@ -9,6 +9,7 @@ GameInfo{
   TitleMusic=""
   AddEventHandlers="GameTimeUIHandler","WorldSetupHandler"
   StatScreen_Single="TigerbunIntermission"
+  intermissioncounter = true
 }
 
 clearepisodes
@@ -20,7 +21,7 @@ episode e1m1
   NoSkillMenu
 }
 
-map e1m1 lookup "TEST_MAP"
+map e1m1 lookup "Livng Room"
 {
    levelnum = 1
    cluster = 1

@@ -157,6 +157,7 @@ class Cat : Actor
 				if (hunger>HUNGRY_THRESHOLD)
 				{
 					target=players[0].mo;
+					GameLogicThinker.GetInstance().IncreaseFeedStat();
 					return ResolveState("See");
 				}
 			}
@@ -215,6 +216,7 @@ class Cat : Actor
 		{
 			purrs = 0; // Reset purr count after reaching threshold
 			A_StopSound(soundChannel);
+			GameLogicThinker.GetInstance().IncreaseSleepsStat();
 			SetState(FindState("Death"));
 		}
 		else
@@ -222,6 +224,7 @@ class Cat : Actor
 			A_StartSound("enemies/cat/purr1",soundChannel,CHANF_OVERLAP);
 			if (!(InStateSequence(CurState, ResolveState("Pets"))))
 			{
+				GameLogicThinker.GetInstance().IncreasePetsStat();
 				SetState(FindState("Pets"));
 			}
 		}
