@@ -5,6 +5,11 @@ class GameLogicThinker : Thinker
     //const MaxGameTime=1050;
     int currentGameTime;
 
+    int numberOfFeeds;
+    int numberOfTreats;
+    int numberOfPets;
+    int numberOfSleeps;
+
     override void PostBeginPlay()
     {
         Super.PostBeginPlay();
@@ -14,6 +19,10 @@ class GameLogicThinker : Thinker
     void Init()
     {
         currentGameTime=MaxGameTime;
+        numberOfFeeds=0;
+        numberOfTreats=0;
+        numberOfPets=0;
+        numberOfSleeps=0;
     }
 
     override void Tick()
@@ -24,6 +33,31 @@ class GameLogicThinker : Thinker
         {
             Exit_Normal(0);
         }
+    }
+
+    void IncreaseFeedStat()
+    {
+        numberOfFeeds++;
+    }
+
+    void IncreaseTreatStat()
+    {
+        numberOfFeeds++;
+    }
+
+    void IncreasePetsStat()
+    {
+        numberOfPets++;
+    }
+
+    void IncreaseSleepsStat()
+    {
+        numberOfSleeps++;
+    }
+
+    clearscope String GetStats()
+    {
+        return String.Format("Sleeps : %d\nTreats : %d\nPets : %d\nFeeds :%d");
     }
 
     clearscope int GetCurrentTime()
