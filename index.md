@@ -7,6 +7,8 @@ The drive for this project came from the frustration of how big/bloated engines 
 ## Tigerbun - The Doom Mod
 This is not really a game, more of a experience. There are no goals, other than to give into the demands of an older ginger cat called Tigerbun. These demands include pets, food, naps and treats, this is all done in a short compressed time frame so that the core 'mechanics' don't go stale.
 
+![Feeding treats to a cat](media/TigerbunInspiration.gif)
+
 For the latest release, please visit the following [release page](https://github.com/bmdFalmouth/DoomMod/releases). To report bugs, please visit the following [issues page](https://github.com/bmdFalmouth/DoomMod/issues).
 
 For more information on the game, including a breakdown of the development please visit the [following](https://bmdfalmouth.github.io/DoomMod/Development/)
