@@ -12,6 +12,3 @@ This is not really a game, more of a experience. There are no goals, other than 
 For the latest release, please visit the following [release page](https://github.com/bmdFalmouth/DoomMod/releases). To report bugs, please visit the following [issues page](https://github.com/bmdFalmouth/DoomMod/issues).
 
 For more information on the game, including a breakdown of the development please visit the [following](https://bmdfalmouth.github.io/DoomMod/Development/)
-
-![Feeding treats to a cat](media/TigerbunInspiration.gif)
-
