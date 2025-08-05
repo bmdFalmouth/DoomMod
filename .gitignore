@@ -1,7 +1,4 @@
 #Mac OS
 .DS_Store
 
-# Ultimate Doom Editor
-*.dbs
-*.backup*
-*.autosave*
+#Markdown
