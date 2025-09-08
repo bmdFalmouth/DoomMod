@@ -11,3 +11,5 @@ Scripting
 =========
 https://github.com/jekyllgrim/ZScript_Basics
 Replacing player - https://www.youtube.com/watch?v=RelCoIzOd0g 
+
+Now on a release
