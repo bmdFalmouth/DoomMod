@@ -34,4 +34,5 @@ DoomEdNums
 {
   10246 = "Cat"
   10300 = "CatFood"
+  10400 = "ScratchingPost"
 }

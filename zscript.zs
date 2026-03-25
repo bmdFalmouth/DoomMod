@@ -12,6 +12,7 @@ version "4.11"
 #include "scripts/enemies/cat.zs"
 #include "scripts/enemies/thoughtbubble.zs"
 #include "scripts/props/food.zs"
+#include "scripts/props/scratchingpost.zs"
 
 //thinkers
 #include "scripts/thinkers/gameLogic.zs"
