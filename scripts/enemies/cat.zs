@@ -24,7 +24,8 @@ class Cat : Actor
     	BLANK,
 		HUNGRY,
 		SLEEP,
-		PETS
+		PETS,
+		SCRATCH
 	}
 
 	//constants
@@ -38,6 +39,7 @@ class Cat : Actor
 	const MAX_SECS_EAT=10;
 
 	const CAT_FOOD_ID=200;
+	const SCRATCH_POST_ID=300;
 
 
 	int purrs;
@@ -53,6 +55,8 @@ class Cat : Actor
 	bool firstSee;
 
 	CatFood catFood;
+	ScratchingPost scratchingPost;
+
 	ThoughtBubble thoughtBubble;
 
 	Vector3 thoughtPos;
@@ -197,7 +201,10 @@ class Cat : Actor
 
 		//spawn thought bubble
 		thoughtBubble=ThoughtBubble(Spawn('ThoughtBubble', thoughtPos));
+
 		catFood=CatFood(Level.CreateActorIterator(CAT_FOOD_ID,"CatFood").Next());
+
+		scratchingPost=ScratchingPost(Level.CreateActorIterator(SCRATCH_POST_ID,"ScratchingPost").Next());
 
 		eatingOffsets.x=-32;
 		eatingOffsets.y=0;
@@ -258,6 +265,16 @@ class Cat : Actor
 		//thoughtBubble
 		thoughtPos=Vec3Offset(thoughtOffsets.x, thoughtOffsets.y, thoughtOffsets.z);
 		thoughtBubble.SetOrigin(thoughtPos,true);
+	}
+
+	void A_Scratch()
+	{
+		if (scratchingPost!=null)
+		{
+			A_ClearTarget();
+			target=scratchingPost;
+			A_Chase();
+		}
 	}
 
 	void A_Hungry()
