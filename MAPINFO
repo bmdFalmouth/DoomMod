@@ -30,6 +30,14 @@ map e1m1 lookup "Livng Room"
    next="EndTitle"
 }
 
+map tutorial lookup "Tutorial"
+{
+    levelnum = 0
+    cluster = 1
+    next = "e1m1"
+    nointermission
+}
+
 DoomEdNums
 {
   10246 = "Cat"
