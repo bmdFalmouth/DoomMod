@@ -13,10 +13,18 @@ GameInfo{
 }
 
 clearepisodes
+episode tutorial
+{
+  picname = "M_EPI1"
+  name = "Tutorial"
+  key = "t"
+  NoSkillMenu
+}
+
 episode e1m1
 {
 	picname = "M_EPI1"
-	name = "Knee-Deep in the Dead"
+	name = "Watching Tigerbun"
 	key = "k"
   NoSkillMenu
 }
