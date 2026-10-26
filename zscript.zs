@@ -16,6 +16,7 @@ version "4.11"
 
 //thinkers
 #include "scripts/thinkers/gameLogic.zs"
+#include "scripts/thinkers/tutorialLogic.zs"
 
 //Event Handlers
 #include "scripts/eventHandlers/gameTimeUIHandler.zs"
