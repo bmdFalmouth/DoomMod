@@ -25,3 +25,4 @@ version "4.11"
 
 //UI
 #include "scripts/UI/tigerbunintermission.zs"
+#include "scripts/UI/uiEntry.zs"
