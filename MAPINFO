@@ -7,7 +7,7 @@ GameInfo{
   QuitSound="enemies/cat/meow1"
   QuitMessages=""
   TitleMusic=""
-  AddEventHandlers="GameTimeUIHandler","WorldSetupHandler"
+  AddEventHandlers="GameTimeUIHandler","WorldSetupHandler","TutorialUIHandler"
   StatScreen_Single="TigerbunIntermission"
   intermissioncounter = true
 }
