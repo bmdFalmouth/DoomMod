@@ -21,6 +21,7 @@ version "4.11"
 //Event Handlers
 #include "scripts/eventHandlers/gameTimeUIHandler.zs"
 #include "scripts/eventHandlers/worldSetupHandler.zs"
+#include "scripts/eventHandlers/TutorialUIHandler.zs"
 
 //UI
 #include "scripts/UI/tigerbunintermission.zs"
