@@ -28,6 +28,11 @@ class TutorialLogicThinker : Thinker
         player=MyPlayer(players[consoleplayer].mo);
         if (player!=null)
         {
+            player.ClearInventory();
+            player.GiveInventory("Dreamies",1);
+            player.GiveInventory("FoodPuch",1);
+            player.GiveInventory("Pet",1);
+            
             console.printf("Tutorial - Found Player");
         }
 

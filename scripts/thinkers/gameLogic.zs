@@ -14,6 +14,8 @@ class GameLogicThinker : Thinker
 
     const MaxGameTimeID="MaxGameTime";
 
+    MyPlayer player;
+
     override void PostBeginPlay()
     {
         Super.PostBeginPlay();
@@ -64,6 +66,14 @@ class GameLogicThinker : Thinker
         numberOfTreats=0;
         numberOfPets=0;
         numberOfSleeps=0;
+
+        player=MyPlayer(players[consoleplayer].mo);
+        if (player!=null)
+        {
+            console.printf("Game - Found Player");
+            player.GiveInventory("FoodPuch", 2);
+            player.GiveInventory("Dreamies", 3);
+        }
     }
 
     override void Tick()
