@@ -13,7 +13,8 @@ class TutorialUIHandler : EventHandler
             StatusBar.BeginHud();
             HudFont tutorialFont=HudFont.Create(bigFont);
             UIEntry currentEntry=tutorialLogic.GetCurrentTutorialEntry();
-            StatusBar.DrawString(tutorialFont, currentEntry.getDisplayString(), currentEntry.getPosition(), StatusBar.DI_SCREEN_LEFT_TOP|StatusBar.DI_TEXT_ALIGN_CENTER, Font.CR_Gold);
+            if (currentEntry!=null)
+                StatusBar.DrawString(tutorialFont, currentEntry.getDisplayString(), currentEntry.getPosition(), StatusBar.DI_SCREEN_LEFT_TOP|StatusBar.DI_TEXT_ALIGN_CENTER, Font.CR_Gold);
         }
 
     }

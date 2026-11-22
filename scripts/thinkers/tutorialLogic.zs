@@ -14,16 +14,22 @@ class TutorialLogicThinker : Thinker
         Super.PostBeginPlay();
         tutorialEntries.Clear();
 
-        UIEntry testEntry=New('UIEntry');
-        testEntry.setDisplayString("This is a tutorial");
-        testEntry.setPosition((120,5));
+        UIEntry petEntry=New('UIEntry');
+        petEntry.setDisplayString("Get close to the cat, and click left mouse to pet");
+        petEntry.setPosition((120,5));
 
-        tutorialEntries.push(testEntry);
+        UIEntry completeEntry=New('UIEntry');
+        completeEntry.setDisplayString("Completed Tutorial");
+        completeEntry.setPosition((120,5));
+
+        tutorialEntries.push(completeEntry);
+        tutorialEntries.push(petEntry);
+
     }
 
     clearscope UIEntry GetCurrentTutorialEntry()
     {
-        return tutorialEntries[0];
+        return tutorialEntries[tutorialEntries.size()-1];
     }
 
     void Init()
@@ -50,6 +56,11 @@ class TutorialLogicThinker : Thinker
             console.printf("Tutorial - Found Player");
         }
 
+    }
+
+    void completePetTheCat()
+    {
+        tutorialEntries.pop();
     }
 
     static TutorialLogicThinker GetInstance()
