@@ -7,9 +7,23 @@ class TutorialLogicThinker : Thinker
     CatFood catFood;
     Cat cat;
 
+    array <UIEntry> tutorialEntries; 
+
     override void PostBeginPlay()
     {
         Super.PostBeginPlay();
+        tutorialEntries.Clear();
+
+        UIEntry testEntry=New('UIEntry');
+        testEntry.setDisplayString("This is a tutorial");
+        testEntry.setPosition((120,5));
+
+        tutorialEntries.push(testEntry);
+    }
+
+    clearscope UIEntry GetCurrentTutorialEntry()
+    {
+        return tutorialEntries[0];
     }
 
     void Init()

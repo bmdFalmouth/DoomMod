@@ -2,8 +2,7 @@ class UIEntry
 {
     private String displayString;
     private Vector2 screenPosition;
-
-
+    
     void setDisplayString(String display)
     {
         displayString=display;
